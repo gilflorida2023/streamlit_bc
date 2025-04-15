@@ -1,6 +1,15 @@
 
 # BC Calculator Reference
 
+### Install Requirements
+  python3 -m venv venv
+  source venv/bin/activate
+  pip install -r requirements.txt
+
+### run application
+  streamlit run streamlit_bc.py
+  
+
 ## Basic Arithmetic Operators
 
 | Operator | Description      | Example     | Result |

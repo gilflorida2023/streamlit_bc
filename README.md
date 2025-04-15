@@ -3,7 +3,7 @@
 
 ## Basic Arithmetic Operators
 
-| Operator | Description       | Example     | Result |
+| Operator | Description      | Example     | Result |
 |----------|------------------|-------------|--------|
 | `+`      | Addition         | `5 + 3`     | 8      |
 | `-`      | Subtraction      | `10 - 4`    | 6      |
@@ -11,6 +11,19 @@
 | `/`      | Division         | `10 / 3`    | 3      |
 | `%`      | Modulus          | `10 % 3`    | 1      |
 | `^`      | Exponentiation   | `2 ^ 3`     | 8      |
+
+## Number Base Conversion
+
+| Variable | Description               | Valid Range | Example               | Result |
+|----------|---------------------------|-------------|-----------------------|--------|
+| `ibase`  | Input base (source)       | 2-16        | `ibase=2; 1101`       | 13     |
+| `obase`  | Output base (destination) | 2-16        | `obase=16; 255`       | FF     |
+
+**Important Notes:**
+- Always set `ibase` before `obase` to avoid confusion
+- Bases work only with integer values
+- Letters A-F are used for bases >10 (case insensitive)
+
 
 ## Comparison Operators
 

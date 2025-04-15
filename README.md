@@ -1,127 +1,81 @@
-# bc Command Cheatsheet
 
-This cheatsheet provides a reference for functions and constants available in the `bc` command on Linux. The `bc` command is an arbitrary-precision calculator language. Some functions are built-in, while others require the math library (loaded with `bc -l`).
+# BC Calculator Reference
 
-## Built-in Functions
+## Basic Arithmetic Operators
 
-These functions are available in `bc` without requiring the math library.
+| Operator | Description       | Example     | Result |
+|----------|------------------|-------------|--------|
+| `+`      | Addition         | `5 + 3`     | 8      |
+| `-`      | Subtraction      | `10 - 4`    | 6      |
+| `*`      | Multiplication   | `3 * 4`     | 12     |
+| `/`      | Division         | `10 / 3`    | 3      |
+| `%`      | Modulus          | `10 % 3`    | 1      |
+| `^`      | Exponentiation   | `2 ^ 3`     | 8      |
 
-| Function | Description |
-|----------|-------------|
-| `length(expression)` | Returns the number of significant decimal digits in the expression. |
-| `read()` | Reads a number from standard input, using the current `ibase` for conversion. Note: Use cautiously to avoid mixing data and program input. |
-| `scale(expression)` | Returns the number of digits after the decimal point in the expression. |
-| `sqrt(expression)` | Returns the square root of the expression. If the expression is negative, a runtime error occurs. |
+## Comparison Operators
 
-## Math Library Functions
+| Operator | Description       | Example     | Result |
+|----------|------------------|-------------|--------|
+| `==`     | Equal            | `5 == 5`    | 1      |
+| `!=`     | Not Equal        | `5 != 3`    | 1      |
+| `<`      | Less Than        | `3 < 5`     | 1      |
+| `<=`     | Less or Equal    | `5 <= 5`    | 1      |
+| `>`      | Greater Than     | `5 > 3`     | 1      |
+| `>=`     | Greater or Equal | `5 >= 5`    | 1      |
 
-These functions are available when `bc` is run with the `-l` option (`bc -l`), which loads the standard math library and sets the default `scale` to 20.
+## Logical Operators
 
-| Function | Description |
-|----------|-------------|
-| `s(x)` | Returns the sine of `x`, where `x` is in radians. |
-| `c(x)` | Returns the cosine of `x`, where `x` is in radians. |
-| `a(x)` | Returns the arctangent of `x`, returning the result in radians. |
-| `l(x)` | Returns the natural logarithm of `x`. |
-| `e(x)` | Returns the exponential function, \( e^x \). |
-| `j(n, x)` | Returns the Bessel function of integer order `n` of `x`. |
+| Operator | Description | Example      | Result |
+|----------|-------------|--------------|--------|
+| `&&`     | AND         | `1 && 0`     | 0      |
+| `\|\|`   | OR          | `1 \|\| 0`   | 1      |
+| `!`      | NOT         | `!0`         | 1      |
+
+## Bitwise Operators
+
+| Operator | Description | Example   | Result |
+|----------|-------------|-----------|--------|
+| `&`      | AND         | `6 & 2`   | 2      |
+| `\|`     | OR          | `6 \| 2`  | 6      |
+| `^`      | XOR         | `6 ^ 2`   | 4      |
+| `~`      | NOT         | `~0`      | -1     |
+| `<<`     | Left Shift  | `4 << 1`  | 8      |
+| `>>`     | Right Shift | `4 >> 1`  | 2      |
+
+## Math Functions (require `-l` flag)
+
+| Function | Description      | Example       | Result      |
+|----------|------------------|---------------|-------------|
+| `s(x)`   | Sine             | `s(1.57)`     | ~1.0        |
+| `c(x)`   | Cosine           | `c(0)`        | 1.0         |
+| `a(x)`   | Arctangent       | `a(1)`        | .7854       |
+| `l(x)`   | Natural Log      | `l(2)`        | .6931       |
+| `e(x)`   | Exponential      | `e(1)`        | 2.7183      |
+| `sqrt(x)`| Square Root      | `sqrt(9)`     | 3           |
+
 
 ## Constants
 
 The `bc` math library does not define many built-in constants, but you can compute common ones using the math library functions. Below are commonly derived constants in `bc`.
 
-| Constant | Description | How to Compute |
-|----------|-------------|----------------|
-| `pi` | The mathematical constant π (~3.14159). | `scale=20; 4*a(1)` (uses arctangent: \( 4 \times \arctan(1) = \pi \)). |
-| `e` | The base of the natural logarithm (~2.71828). | `scale=20; e(1)` (computes \( e^1 \)). |
-
-## Notes
-
-- **Scale**: The `scale` variable controls the number of decimal places for calculations. Default is 0 (integer mode) unless `-l` is used, which sets it to 20. Set it manually with `scale=n`.
-- **Math Library**: Use `bc -l` to access trigonometric, logarithmic, exponential, and Bessel functions.
-- **Custom Functions**: You can define your own functions in `bc` using the `define` keyword, e.g., `define f(x) { return x*x; }` for squaring a number.
-- **Input/Output Base**: Use `ibase` and `obase` to set input and output number bases (default is 10). For example, `obase=16` outputs in hexadecimal.
-
-## Example Usage
-
-```bash
-# Start bc with math library
-bc -l
-
-# Compute pi
-scale=10; 4*a(1)
-# Output: 3.1415926532
-
-# Compute sine of 1 radian
-s(1)
-# Output: .84147098480789650665
-
-# Define a custom function
-define square(x) { return x*x; }
-square(5)
-# Output: 25
+| Constant | Description | How to Compute                                         |
+|----------|-------------|--------------------------------------------------------|
+| `pi` | The mathematical constant π (~3.14159). | `scale=20; 4*a(1)`             |
+| `e` | The base of the natural logarithm (~2.71828). | `scale=20; e(1)`          |
+| `phi` | Golden Ratio (φ, phi) (~1.6180339887). | `scale=10; (1 + sqrt(5)) / 2`  |
 
 
-# bc Command Cheatsheet
+## Examples
 
-This cheatsheet provides a reference for functions and constants available in the `bc` command on Linux. The `bc` command is an arbitrary-precision calculator language. Some functions are built-in, while others require the math library (loaded with `bc -l`).
+```bc
+# Integer division
+scale = 0
+17 / 3  # Returns 5
 
-## Built-in Functions
+# Floating-point division
+scale = 2
+17 / 3  # Returns 5.66
 
-These functions are available in `bc` without requiring the math library.
-
-| Function | Description |
-|----------|-------------|
-| `length(expression)` | Returns the number of significant decimal digits in the expression. |
-| `read()` | Reads a number from standard input, using the current `ibase` for conversion. Note: Use cautiously to avoid mixing data and program input. |
-| `scale(expression)` | Returns the number of digits after the decimal point in the expression. |
-| `sqrt(expression)` | Returns the square root of the expression. If the expression is negative, a runtime error occurs. |
-
-## Math Library Functions
-
-These functions are available when `bc` is run with the `-l` option (`bc -l`), which loads the standard math library and sets the default `scale` to 20.
-
-| Function | Description |
-|----------|-------------|
-| `s(x)` | Returns the sine of `x`, where `x` is in radians. |
-| `c(x)` | Returns the cosine of `x`, where `x` is in radians. |
-| `a(x)` | Returns the arctangent of `x`, returning the result in radians. |
-| `l(x)` | Returns the natural logarithm of `x`. |
-| `e(x)` | Returns the exponential function, \( e^x \). |
-| `j(n, x)` | Returns the Bessel function of integer order `n` of `x`. |
-
-## Constants
-
-The `bc` math library does not define many built-in constants, but you can compute common ones using the math library functions. Below are commonly derived constants in `bc`.
-
-| Constant | Description | How to Compute |
-|----------|-------------|----------------|
-| `pi` | The mathematical constant π (~3.14159). | `scale=20; 4*a(1)` (uses arctangent: \( 4 \times \arctan(1) = \pi \)). |
-| `e` | The base of the natural logarithm (~2.71828). | `scale=20; e(1)` (computes \( e^1 \)). |
-| `phi` | Golden Ratio (φ, phi) (~1.6180339887). | `scale=10; (1 + sqrt(5)) / 2` (computes \( phi \)). |
-
-## Notes
-
-- **Scale**: The `scale` variable controls the number of decimal places for calculations. Default is 0 (integer mode) unless `-l` is used, which sets it to 20. Set it manually with `scale=n`.
-- **Math Library**: Use `bc -l` to access trigonometric, logarithmic, exponential, and Bessel functions.
-- **Custom Functions**: You can define your own functions in `bc` using the `define` keyword, e.g., `define f(x) { return x*x; }` for squaring a number.
-- **Input/Output Base**: Use `ibase` and `obase` to set input and output number bases (default is 10). For example, `obase=16` outputs in hexadecimal.
-
-## Example Usage
-
-```bash
-# Start bc with math library
-bc -l
-
-# Compute pi
-scale=10; 4*a(1)
-# Output: 3.1415926532
-
-# Compute sine of 1 radian
-s(1)
-# Output: .84147098480789650665
-
-# Define a custom function
-define square(x) { return x*x; }
-square(5)
-# Output: 25
+# Using math library
+scale = 4
+s(3.14/2)  # Returns ~1.0

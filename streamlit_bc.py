@@ -6,7 +6,7 @@ def run_bc(calculation):
     # Append a newline if the input doesn't already end with one
     if not calculation.endswith('\n'):
         calculation += '\n'
-    result = subprocess.run(['bc'], input=calculation, text=True, capture_output=True)
+    result = subprocess.run(['bc','-l'], input=calculation, text=True, capture_output=True)
     return result
 
 # Set up the Streamlit app

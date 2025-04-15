@@ -98,6 +98,7 @@ The `bc` math library does not define many built-in constants, but you can compu
 |----------|-------------|----------------|
 | `pi` | The mathematical constant π (~3.14159). | `scale=20; 4*a(1)` (uses arctangent: \( 4 \times \arctan(1) = \pi \)). |
 | `e` | The base of the natural logarithm (~2.71828). | `scale=20; e(1)` (computes \( e^1 \)). |
+| `phi` | Golden Ratio (φ, phi) (~1.6180339887). | `scale=10; (1 + sqrt(5)) / 2` (computes \( phi \)). |
 
 ## Notes
 

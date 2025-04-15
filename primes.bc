@@ -21,13 +21,14 @@ define primes_up_to(n) {
     first = 1
     for (i = 2; i <= n; i++) {
         if (a[i]) {
-            if (!first) ", "
-            i
+            if (!first) print ", "
+            print i
             first = 0
         }
     }
-    "
-"
+    
+    /* Print newline */
+    print "\n"
 }
 
-primes_up_to(1000000)
+dummy = primes_up_to(10)

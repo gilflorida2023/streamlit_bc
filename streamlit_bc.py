@@ -1,6 +1,17 @@
 import streamlit as st
 import subprocess
 
+# Function to read markdown file
+def read_markdown_file(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        return "# Error\nMarkdown file not found. Please ensure README.md exists in the same directory."
+    except Exception as e:
+        return f"# Error\nAn error occurred: {str(e)}"
+
+
 def run_bc(calculation):
     """Send the calculation to bc and return the subprocess result."""
     # Append a newline if the input doesn't already end with one
@@ -37,6 +48,13 @@ st.set_page_config(
         """
     }
 )
+# Sidebar with markdown content
+with st.sidebar:
+    st.header("Documentation")
+    # Read and render markdown from README.md
+    markdown_content = read_markdown_file("README.md")
+    st.markdown(markdown_content, unsafe_allow_html=True)
+
 
 # Streamlit Title
 st.title("BC Calculator")

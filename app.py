@@ -61,7 +61,7 @@ st.title("BC Calculator")
 
 # Provide a link to a useful bc resource
 
-st.markdown("[BC CHEATSHEET](https://github.com/gilflorida2023/streamlit_bc/blob/master/README.md)")
+st.markdown("[BC CHEATSHEET](https://github.com/gilflorida2023/streamlit_bc/)")
 
 # Add some example usage
 st.markdown("### Examples")
